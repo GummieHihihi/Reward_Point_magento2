@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="editor"/>
+    <body>
+        <referenceBlock name="menu">
+            <action method="setActive">
+                <argument name="itemId" xsi:type="string">Reward_Point</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Reward\Point\Block\Adminhtml\EarningRules\Edit" name="rewardpointadmin_earningrules_edit">
+            </block>
+            
+        </referenceContainer> 
+        <referenceContainer name="left">
+            <block class="Reward\Point\Block\Adminhtml\EarningRules\Edit\Tabs" name="rewardpointadmin_earningrules_tabs">
+            </block>
+        </referenceContainer>
+    </body>
+</page>

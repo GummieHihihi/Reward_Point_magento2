@@ -1,0 +1,39 @@
+<?php
+// block : Reward\Point\Block\Frontend\Checkout\EarningRules
+$gethighestrules = $block->getHighestRules();
+// var_dump($gethighestrules);
+// die();
+if($gethighestrules['type'] == 'give'){
+	$receivePoint = $block->getHighestRules()['receive_point'];
+	$total = $block->addGiveRewardPoint($receivePoint);
+	echo "<p>you have just earn $receivePoint reward point</p>";
+}
+else{
+	$receivePoint = $block->getHighestRules()['receive_point'];
+	$spentAmount = $block->getHighestRules()['spent_amount'];
+	$exchangeRate = $spentAmount/$receivePoint;
+	$pointGet = $block->getTempTotal()[0]['total']/$exchangeRate;
+	$total = $block->addGiveRewardPoint($pointGet);
+	$block->saveTemp((int)$block->getTotal(),1);
+	echo "<p>you have just earn $pointGet reward point</p>";
+}
+
+// if the customer use reward point
+$spendPoint = $block->getSessionData("point");
+if($spendPoint != 0){
+	echo "<h3>You have just spend $spendPoint reward point</h3>";
+	$block->minusRewardPoint($spendPoint);
+	$currentpoint = $block->getCustomerRewardPoint()[0]["client_point"];
+
+	echo "<h3>You now have $currentpoint reward point</h3>";
+// set session of the discount information to -> 0 
+	$block->setSessionData('money', 0);
+}
+// if the customer didnt use the reward point
+else{
+	$block->setSessionData('money', 0);
+	$customerPoint = $block->getCustomerRewardPoint()[0]["client_point"];
+	echo "<h3>Now you have $customerPoint reward point in your account</h3>";
+}
+
+?>

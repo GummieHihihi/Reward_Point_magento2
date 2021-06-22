@@ -1,0 +1,14 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Reward_Point::Reward_point_title" title="Reward Point" module="Reward_Point"
+			sortOrder="99" parent="Magento_Customer::customer" resource="Duong_Demo::vendor_manage"/>
+		<add id="Reward_Point::Earning_Rules" title="Earning Rules" module="Reward_Point"
+			sortOrder="99" parent="Reward_Point::Reward_point_title" action="rewardpointadmin/earningrules/index" resource="Duong_Demo::vendor_manage"/>
+			<add id="Reward_Point::Exchange_rate" title="Exchange Rate" module="Reward_Point"
+			sortOrder="99" parent="Reward_Point::Reward_point_title" action="rewardpointadmin/exchangerate/index" resource="Duong_Demo::vendor_manage"/>
+			<add id="Reward_Point::Transaction" title="Transaction" module="Reward_Point"
+			sortOrder="99" parent="Reward_Point::Reward_point_title" action="rewardpointadmin/transactions/index" resource="Duong_Demo::vendor_manage"/>
+			<add id="Reward_Point::import_export" title="Import/Export Transaction" module="Reward_Point"
+			sortOrder="99" parent="Reward_Point::Reward_point_title" action="multivendoradmin/vendor/index" resource="Duong_Demo::vendor_manage"/>
+		</menu>
+	</config>

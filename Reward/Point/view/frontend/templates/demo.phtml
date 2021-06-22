@@ -1,0 +1,26 @@
+<?php
+$customerPoint = $block->getCustomerRewardPoint()[0]["client_point"];
+
+echo "<h3>you have $customerPoint reward point in your account</h3>";
+
+$gethighestrules = $block->getHighestRules();
+// var_dump($gethighestrules);
+// die();
+
+
+if($gethighestrules['type'] == 'give'){
+	$receivePoint = $block->getHighestRules()['receive_point'];
+	$total = $block->addGiveRewardPoint($receivePoint);
+	$block->saveTemp((int)$block->getTotal(),1);
+	echo "<p>You will get $receivePoint reward Point for this cart</p>";
+}
+else{
+	$receivePoint = $block->getHighestRules()['receive_point'];
+	$spentAmount = $block->getHighestRules()['spent_amount'];
+	$exchangeRate = $spentAmount/$receivePoint;
+	$block->saveTemp((int)$block->getTotal(),1);
+	echo "<p>For every $spentAmount $ of total, you will get $receivePoint reward Point</p>";
+}
+
+//exchange point to discount
+?>

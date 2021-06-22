@@ -1,0 +1,15 @@
+<?php 
+// this block : Block/Frontend/checkout/ExchangeRules
+$customerPoint = $block->getCustomerRewardPoint()[0]['client_point'];
+
+$rate = (int)$block->getHighestRules()['exchangeRate'];
+
+?>
+<h4>For each <?php echo $rate; ?> of Reward Point, you will receive 1$</h4>
+Change your Point : 
+<form action="<?php echo $block->getStoreManager()->getStore()->getUrl('rewardpoint/exchangerule/changepoint'); ?>" id="form_input" method="post" enctype="multipart/form-data">
+	<h3>You now have <?php echo $customerPoint; ?> Point</h3>
+	<input style="" type="input" name="point">
+	<input type="hidden" value="<?php echo $rate; ?>" name ="rate">
+	<button type="submit" value="Change Point" class="btn btn-primary" style="background-color: blue; color: white" id="changepointbtn" name="add">Change Point</button>
+</form>
